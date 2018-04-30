@@ -1,0 +1,12 @@
+extends ../layout/page.pug
+append content
+    form.login(name="login")
+        .form-group
+            input#inputUsername.form-control(type="text" name="username" aria-describedby="Input username" placeholder="Enter username")
+            p.help-block#usernameHelp Input youre username in chat
+        .form-group
+            input#inputPassword.form-control(type="password" name="password" placeholder="Password")
+            p.help-block Input youre password
+        .control-group
+            button.btn.btn-success Login
+    script(src="./js/validateFormLogin.js")

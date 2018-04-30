@@ -1,0 +1,18 @@
+extends ../layout/page.pug
+append content
+    form.form-horizontal(name="registration")
+        fieldset
+            div#legend
+                legend Register
+            .control-group
+                input#username.form-control(type="text" name="username" placeholder="Username")
+                p.help-block#usernameHelp Username can contain any letters or numbers, without spaces
+            .control-group
+                input#password.form-control(type="password" name="password" placeholder="Password")
+                p.help-block#passwordHelp Password should be at least 4 characters
+            .control-group
+                input.form-control#password_confirm(type="password" name="password_confirm" placeholder="Password (Confirm)")
+                p.help-block#password_confirmHelp Please confirm password
+            .control-group
+                button.btn.btn-success Register
+    script(src="./js/validateFormRegistration.js")

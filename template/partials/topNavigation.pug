@@ -1,0 +1,16 @@
+ul.col
+    li
+        a(href="../") Home
+    li.aboutHtml
+        a(href="../textAboutHtml") About HTML
+    if(user)
+        li
+            a(href="../chat") Chat
+span.d-inline-block(style="position:absolute; top: 0; right: 5px;")
+    .HeaderNavlink.px-0.py-2.m-0
+        if(!user)
+            a.text-dark(href="../login") Sign in
+            span.text-gray  or 
+            a.text-dark(href="../registration") Sign up
+        if(user)
+            a.text-dark(href="../login") Log Out

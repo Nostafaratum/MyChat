@@ -1,0 +1,20 @@
+doctype html
+html(lang="ru")
+    head
+        meta(charset="utf-8")
+        title= title ? title : "Page"
+        link(rel='stylesheet', type="text/css", href='./css/bootstrap.min.css')
+        block links
+        link(rel='stylesheet', type="text/css", href='./css/style.css')
+        script 
+          include ../../public/js/jquery.min.js
+    body
+      .row.topNavigation
+        .col
+          include ../partials/topNavigation
+      .row.content
+        .col
+          include ../partials/content 
+      .row.footer
+        .col
+          include ../partials/footer

@@ -1,0 +1,17 @@
+extends ../layout/page.pug
+append links
+    script(src="/socket.io/socket.io.js")
+    script(src="https://code.jquery.com/jquery-1.11.1.js")
+append content
+    if(user)
+        .row
+            .col
+                ul#message
+                    li.systemMessage system: Welcome to chat #{user.username}!
+        .row
+            form
+                .col.input-group
+                    input.form-control(type="text", aria-describedby="basic-addon2" placeholder="Input text")
+        script(src="./js/chat.js")
+    else
+        script location.href = '/';
