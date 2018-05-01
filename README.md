@@ -9,3 +9,9 @@ To run unit tests, you need to write npm test.
 To run server, you need to write npm start.
 
 A simple chat room where you can exchange messages with all who have connected to a nickname, as well as there is an information page with the text about html.
+
+- Version 3.3.2
+    Add to user model "crypto"
+
+- Version 3.3.1
+    Copied on promise
