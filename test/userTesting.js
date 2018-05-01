@@ -22,6 +22,7 @@ describe("User testing", () => {
                     .then(() => User.findOne({ username : "UserToCheckForAdditions" }))
                     .then(user => {
                         expect(userToAdd.username).to.equals(user.username);
+                        expect(userToAdd.hashedPassword).to.equals(user.hashedPassword);
                     });
             }
             else
@@ -31,7 +32,7 @@ describe("User testing", () => {
         it("Add an existing user", () => {
             if(mongoose.models.user) {
                 let user = new User ({ username : "UserToCheckForAdditions", 
-                    password : "password"});
+                    password : "password" });
                 return user.save((err) => {
                     should.exist(err);
                 });
