@@ -1,5 +1,7 @@
 'use strict';
 
+const crypto = require('crypto');
+
 import mongoose from '../lib/mongoose';
 let Schema = mongoose.Schema;
 
@@ -9,7 +11,7 @@ let schema = new Schema({
     unique: true,
     required: true
   },
-  password: {
+  hashedPassword: {
     type: String,
     required: true
   },
@@ -18,6 +20,42 @@ let schema = new Schema({
     default: Date.now
   }
 });
+
+schema.virtual('password')
+  .set(function(password){
+    const cipher = crypto.createCipher('aes192', 'qwerty');
+    let encrypted = '';
+
+    cipher.on('readable', () => {
+      const data = cipher.read();
+      if (data)
+        encrypted += data.toString('hex');
+    });
+    
+    cipher.on('end', () => {
+    });
+
+    cipher.write(password);
+    cipher.end();
+    this.hashedPassword = encrypted;
+  })
+  .get(function(){
+    const decipher = crypto.createDecipher('aes192', 'qwerty');
+    let decrypted = '';
+
+    decipher.on('readable', () => {
+      const data = decipher.read();
+      if (data)
+        decrypted += data.toString('utf8');
+    });
+
+    decipher.on('end', () => {
+    });
+
+    decipher.write(this.hashedPassword, 'hex');
+    decipher.end();
+    return decrypted;
+  });
 
 export let User = mongoose.model("user", schema);
 
