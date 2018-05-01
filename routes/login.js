@@ -18,17 +18,17 @@ exports.post = (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
   let user = new Promise((response) => {
-    response(User.findOne({ username: username, password: password }));
+    response(User.findOne({ username: username}));
   });
   user
     .then(user => {
-      if (user) {
+      if (user && user.password === password) {
         req.session.user = user._id;
         res.locals.user = req.user = user;
         res.send({ user });
       }
       else {
-        console.log("AuthError")
+        console.log("AuthError");
         next(new AuthError('User not found'));
       }
     })
